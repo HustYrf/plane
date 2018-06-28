@@ -1,0 +1,119 @@
+  <!-- 菜单导航 -->
+    <div class="sidebar-nav">
+        <a href="#dashboard-menu" class="nav-header" data-toggle="collapse">
+            <span style="font-weight: bold;font-size: 16px;">&nbsp;&nbsp;地图操作</span>
+        </a>
+        <ul id="dashboard-menu" class="nav nav-list collapse in">
+            <li class="active">
+                <a href="${s.base}/routeList.action">&nbsp;&nbsp;路由分布</a>
+            </li>
+            <li>
+                <a onclick="findlines();" >&nbsp;&nbsp;查询路由</a>
+            </li>
+        </ul>
+
+
+        <a href="#accounts-menu1" class="nav-header" data-toggle="collapse">
+            <span style="font-weight: bold;font-size: 16px;">&nbsp;&nbsp;施工告警</span>
+        </a>
+        <ul id="accounts-menu1" class="nav nav-list collapse">
+            <li><a onclick="findlines();">&nbsp;&nbsp;显示预警</a></li>
+            <li><a href="#">&nbsp;&nbsp;预警级别</a></li>
+            <li><a href="#">&nbsp;&nbsp;历史预警</a></li>
+        </ul>
+
+
+        <a href="#accounts-menu2" class="nav-header" data-toggle="collapse">
+            <span style="font-weight: bold;font-size: 16px;">&nbsp;&nbsp;飞行设定</span>
+        </a>
+        <ul id="accounts-menu2" class="nav nav-list collapse ">
+            <li><a href="#">&nbsp;&nbsp;无人机显示</a></li>
+            <li><a href="#">&nbsp;&nbsp;过滤显示</a></li>
+            <li><a href="#">&nbsp;&nbsp;设定飞行路径</a></li>
+            <li><a href="#">&nbsp;&nbsp;飞行路径导入</a></li>
+            <li><a href="#">&nbsp;&nbsp;导出飞行路径</a></li>
+            <li><a href="#">&nbsp;&nbsp;下发飞行路径</a></li>
+        </ul>
+        <a href="#accounts-menu4" class="nav-header" data-toggle="collapse">
+            <span style="font-weight: bold;font-size: 16px;">&nbsp;&nbsp;任务管理</span>
+        </a>
+        <ul id="accounts-menu4" class="nav nav-list collapse ">
+            <li><a href="${s.base}/toTaskCreate.action">&nbsp;&nbsp;任务创建</a></li>
+            <li><a href="${s.base}/taskPageList.action">&nbsp;&nbsp;任务列表</a></li>
+        </ul>
+        
+        
+
+        <a href="#accounts-menu5" class="nav-header" data-toggle="collapse">
+            <span style="font-weight: bold;font-size: 16px;">&nbsp;&nbsp;用户管理</span>
+        </a>
+        <ul id="accounts-menu5" class="nav nav-list collapse ">
+            <li><a href="#">&nbsp;&nbsp;用户增删改</a></li>
+             <li><a href="#">&nbsp;&nbsp;用户组绑定</a></li>
+        </ul>
+        
+    
+        
+        <a href="#accounts-menu6" class="nav-header" data-toggle="collapse">
+            <span style="font-weight: bold;font-size: 16px;">&nbsp;&nbsp;我的账号</span>
+        </a>
+        <ul id="accounts-menu6" class="nav nav-list collapse ">
+            <li><a href="#">&nbsp;&nbsp;退出</a></li>
+        </ul>
+       
+    </div>
+
+             <!-- 查询路由弹出层 -start -->
+	<div class="modal" id="findlineModal" tabindex="-1" role="dialog"  aria-hidden="true">
+		<div class="modal_wapper">
+			<div class="modal-dialog w-8" >
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+						<h4 class="modal-title" >查询路由</h4>
+					</div>
+					
+					<div class="modal-body">
+						<form role="form" id="importCourseSectionForm" method="post" action="${s.base}/courseSection/doImport.html"  enctype="multipart/form-data">
+							<div class="form-group clearfix"> 
+								<label class="control-label" style="width:150px;" >请选择文件(.xlsx) <span id="imgErrSpan" style="color:red;font-weight:normal;"></span> </label> 
+								<div class="col-sm-8">
+										<input type="file" id="courseSectionExcel" name="courseSectionExcel"  onchange="fileChange();">
+								</div>
+							</div>
+						</form>
+						<!-- tip提示-start -->
+						<div id="_ocAlertTip" class="alert alert-success f-16" style="display: none;">请选择 .xlsx 格式的文件</div>
+						<!-- tip提示-end -->
+					</div>
+					
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" onclick="doImport();">导入</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 查询路由章节弹出层 -end -->
+	
+	
+	<script>
+
+	function findlines(){
+
+
+		Modal.show('findlineModal');
+	} 
+   
+   	function doImport() {
+   		window.location.href="${s.base}/test.action";
+		
+	}
+	</script>
+    
+    
+   
+ 

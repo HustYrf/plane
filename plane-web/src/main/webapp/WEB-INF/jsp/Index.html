@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+  	<#include "common/res.html" />
+</head>
+<body>
+	<#include "common/header.html" />
+    <#include "./nav.html" />
+     <div class="content">
+        <div class="container-fluid">
+
+               <div clerass="row-fluid">
+                   <div class="block span6">
+	                       <div id="container">
+	                       </div>
+	                       <script>
+	                           var map = new AMap.Map('container', {
+	                               resizeEnable: true,
+	                               zoom: 11,
+	                               center: [116.397428, 39.90923]
+	                           });
+	                       </script>
+            	      </div>
+				 </div>
+            </div>
+          </div>
+          
+  
+	</body>
+</html>

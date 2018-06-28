@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="js/jquery.form.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/highcharts-4.1.min.js"></script>
+    <script type="text/javascript" src="js/oc.min.js"></script>
+    <script type="text/javascript" src="js/calendar.min.js"></script>
+    <link rel="icon" type="image/png" href="i/ico.png" sizes="16x16">
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css" />
+    <script src="http://cache.amap.com/lbs/static/es5.min.js"></script>
+    <script src="http://webapi.amap.com/maps?v=1.4.6&key=82f9e75505b649be9ab81a45ae34aa14"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+
+</head>
+<body>
+	<#include "common/header.html" />
+    <#include "./nav.html" />
+     <div class="content">
+        <div class="container-fluid">
+
+               <div class="row-fluid">
+                   <div class="block span6">
+                   	<div id="container"></div>
+    <script type="text/javascript" src="//webapi.amap.com/maps?v=1.4.6&key=82f9e75505b649be9ab81a45ae34aa14"></script>
+    <!-- UI组件库 1.0 -->
+    <script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+                   	<script type="text/javascript">
+		                    var map = new AMap.Map('container', {
+		                        resizeEnable: true,
+		                        center: [116.397428, 39.90923],
+		                        zoom: 13
+		                    });
+		                    
+		                    var marker = new AMap.Marker({
+		                        map: map,
+		                        position: [116.398258, 39.9046],
+		                        icon: new AMap.Icon({
+		                            size: new AMap.Size(50, 60), //图标大小
+		                            image: "http://webapi.amap.com/theme/v1.3/images/newpc/way_btn2.png",
+		                            imageOffset: new AMap.Pixel(0, -60)
+
+		                        }),
+		                        draggable: true //点标记可拖拽
+		                    });
+		                    
+		                    var marker2 = new AMap.Marker({
+		                        map: map,
+		                        position: [116.382122,39.901176],
+		                        icon: new AMap.Icon({
+		                            size: new AMap.Size(50, 60), //图标大小
+		                            image: "http://webapi.amap.com/theme/v1.3/images/newpc/way_btn2.png",
+		                            imageOffset: new AMap.Pixel(0, -60)
+
+		                        }),
+		                        draggable: true //点标记可拖拽
+		                    });
+                            
+
+		                    AMapUI.loadUI(['overlay/SimpleInfoWindow'], function(SimpleInfoWindow) {
+		                        var infoWindow = new SimpleInfoWindow({
+		                            //模板, underscore
+		                            infoTitle: '<strong><%- title %></strong>',
+		                            infoBody: '<p class="my-desc">' +
+		                                //<%= 原值插入 ..
+		                                '<%= img %>' +
+		                                //<%- html编码后插入
+		                                '<%- body %>' +
+		                                '</p>',
+		                            //模板数据
+		                            infoTplData: {
+		                                title: '"光缆干线1"',
+		                                img: '<img src="http://s7d2.scene7.com/is/image/Caterpillar/C10602924?$cc-s$" />',
+		                                body: '工程机械行业或许不是最危险的，但是危险程度也不低。我们身边随时都有事故发生。当我在网络上看到那么多事故的照片时，我甚至有时候都想放弃这一行去改行做其他的  可是我除了会开挖机还会干什么呢！都说隔行如隔山 。都到了有家庭的年纪了再去改行我又应该拿什么去撑起这个家呢！没有办法只有硬着头皮继续走下去。当我在这一行做的越久我就越胆小，当看到别人干一些比较危险的活或者做一些比较危险的动作的时候我都很佩服他，我承认我不如他。'
+		                            },
+
+		                            //基点指向marker的头部位置
+		                            offset: new AMap.Pixel(0, 0)
+		                        });
+
+		                        function openInfoWin() {
+		                            infoWindow.open(map, marker.getPosition());
+		                        }
+
+		                        //marker 点击时打开
+		                        AMap.event.addListener(marker, 'click', function() {
+		                            openInfoWin();
+		                        });
+                                
+		                        AMap.event.addListener(marker2, 'click', function() {
+		                            openInfoWin();
+		                        });
+		                    });
+		                    
+		                    var lineArr = ${path};
+		                    var polyline = new AMap.Polyline({
+		                        path: lineArr,          //设置线覆盖物路径
+		                        strokeColor: "#3366FF", //线颜色
+		                        strokeOpacity: 1,       //线透明度
+		                        strokeWeight: 5,        //线宽
+		                        strokeStyle: "solid",   //线样式
+		                        strokeDasharray: [10, 5] //补充线样式
+		                    });
+		                    polyline.setMap(map);
+		                    
+		                    
+                   	</script>
+            	      </div>
+				 </div>
+            </div>
+          </div>
+	</body>
+</html>
