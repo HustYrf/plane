@@ -34,6 +34,8 @@ public class PointUtil {
 		list.add(y);
 		return list;
 	}
+
+
 	public static void main(String[] args) {
 		String s="Point(1.9999 1.88888)";
 		Point stringToPoint = PointUtil.StringToPoint(s);
