@@ -35,7 +35,7 @@ public class RouteController {
 		List<String> listString = LineUtil.pathToArray(path);
 		String position = listString.get(0);
 
-		InfoTplData infoTplData=new InfoTplData("危险点1","<img src=\"http://s7d2.scene7.com/is/image/Caterpillar/C10602924?$cc-s$\" />","工程机械行业或许不是最危险的，但是危险程度也不低。我们身边随时都有事故发生。当我在网络上看到那么多事故的照片时，我甚至有时候都想放弃这一行去改行做其他的  可是我除了会开挖机还会干什么呢！都说隔行如隔山 。都到了有家庭的年纪了再去改行我又应该拿什么去撑起这个家呢！没有办法只有硬着头皮继续走下去。当我在这一行做的越久我就越胆小，当看到别人干一些比较危险的活或者做一些比较危险的动作的时候我都很佩服他，我承认我不如他。");
+		InfoTplData infoTplData=new InfoTplData("巡检路线1","<img src=\"http://s7d2.scene7.com/is/image/Caterpillar/C10602924?$cc-s$\" />","工程机械行业或许不是最危险的，但是危险程度也不低。我们身边随时都有事故发生。当我在网络上看到那么多事故的照片时，我甚至有时候都想放弃这一行去改行做其他的  可是我除了会开挖机还会干什么呢！都说隔行如隔山 。都到了有家庭的年纪了再去改行我又应该拿什么去撑起这个家呢！没有办法只有硬着头皮继续走下去。当我在这一行做的越久我就越胆小，当看到别人干一些比较危险的活或者做一些比较危险的动作的时候我都很佩服他，我承认我不如他。");
 		String result = JsonUtils.objectToJson(infoTplData);
 		model.addAttribute("infoData",result);
 		model.addAttribute("position",position);
