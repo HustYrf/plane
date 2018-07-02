@@ -194,7 +194,6 @@
         #alertDiv {
             display: none;
         }
-
     </style>
 </head>
 
@@ -204,25 +203,25 @@
     <div class="container">
         <div class="row">
             <div class="col-md-offset-3 col-md-6">
-                <form class="form-horizontal" method="post" id="loginForm">
-                    <span class="heading">无人机智能巡检系统</span>
+                <form class="form-horizontal" method="post" id="registerForm">
+                    <span class="heading">用户注册</span>
                     <div class="form-group">
-                        <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="请输入账号">
+                        <input type="text" name="username" class="form-control" id="username" placeholder="请输入用户名">
                         <i class="fa fa-user"></i>
                     </div>
                     <div class="form-group help">
-                        <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="请输入密码">
+                        <input type="password" name="password" class="form-control" id="password" placeholder="输入密码">
+                        <i class="fa fa-lock"></i>
+                        <a href="#" class="fa fa-question-circle"></a>
+                    </div>
+                    <div class="form-group help">
+                        <input type="password" name="passwordensure" class="form-control" id="passwordensure" placeholder="确认密码">
                         <i class="fa fa-lock"></i>
                         <a href="#" class="fa fa-question-circle"></a>
                     </div>
                     <div class="form-group">
-                        <div class="main-checkbox">
-                            <input type="checkbox" value="None" id="checkbox1" name="remeber_me" />
-                            <label for="checkbox1"></label>
-                        </div>
-                        <span class="text">记住密码</span>
-                        <button type="button" class="btn btn-default" id="register" >注册</button>
-                        <button type="button" class="btn btn-default" id="login">登录</button>
+                        <button type="button" class="btn btn-default" id="register">注册</button>
+                        <button type="button" class="btn btn-default">重置</button>
                     </div>
                     <div id="alertDiv">
                     </div>
@@ -232,33 +231,37 @@
         </div>
     </div>
     <script type="text/javascript">
-        $("#login").click(function () {
-           $.ajax({
-               type:"post",
-               url:"login",
-               data: $("#loginForm").serialize(),
-               success: function (result) {
-                   //alert(JSON.stringify(result));
-                   if (result.errcode==0 && result.message=="success") {
-                       window.location.href = '/index';
-                   } else {
-                       showAlert(result.message);
-                   }
-               }
-           });
-        })
-
-        $("#register").click(function () {
-            window.location.href = '/admin/register';
-        })
-
-        function showAlert(message) {
-            var alertitem = document.getElementById("alertDiv");
-            var innHTMl = '<div class="alert alert-danger alert-dismissable" id="alerth"><button type="button" class="close" data-dismiss="alert" >&times;</button>'+message+'</div>';
-            alertitem.innerHTML = innHTMl;
-            alertitem.style.display = "block";
-        }
-
+           $("#register").click(function() {
+                var password = $("#password").val();
+                var passwordensure = $("#passwordensure").val();
+                if (password != passwordensure) {
+                    showAlert('密码和确认密码不一致！');
+                } else {
+                    $.ajax({
+                        url: 'register',
+                        type: 'POST',
+                        async: true,
+                        data:$("#registerForm").serialize(),
+                        timeout: 5000,
+                        dataType: 'json',
+                        success: function(result) {
+                            if (result.errcode==0)
+                            {
+                                showAlert(result.message);
+                                window.location.href = "login";
+                            } else {
+                                showAlert(result.message);
+                            }
+                        }
+                    });
+                }
+            })
+            function showAlert(message) {
+                var alertitem = document.getElementById("alertDiv");
+                var innHTMl = '<div class="alert alert-danger alert-dismissable" id="alerth"><button type="button" class="close" data-dismiss="alert" >&times;</button>' + message + '</div>';
+                alertitem.innerHTML = innHTMl;
+                alertitem.style.display = "block";
+            }
     </script>
 </body>
 

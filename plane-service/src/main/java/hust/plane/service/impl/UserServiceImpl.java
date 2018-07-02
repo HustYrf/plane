@@ -1,6 +1,7 @@
 package hust.plane.service.impl;
 
 import hust.plane.mapper.mapper.UserMapper;
+import hust.plane.mapper.pojo.Plane;
 import hust.plane.mapper.pojo.User;
 import hust.plane.mapper.pojo.UserExample;
 import hust.plane.service.interFace.UserService;
@@ -12,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -47,5 +49,31 @@ public class UserServiceImpl implements UserService {
             throw new TipException("用户名和密码错误");
         }
         return userList.get(0);
+    }
+
+    /**
+     * 注册
+     * @param username
+     * @param password
+     * @return
+     */
+    @Override
+    public int register(String username, String password) {
+        if(StringUtils.isBlank(username)||StringUtils.isBlank(password)){
+            throw new TipException("用户名和密码不能为空");
+        }
+        int usernameCount = userDao.selectByUserName(username);
+        if(usernameCount==1){
+            throw new TipException("该用户名已经存在");
+        }
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(PlaneUtils.MD5encode(username+password));
+        user.setRole("0");
+        user.setCreatetime(new Date());
+        user.setDescripte("操作员");
+        user.setUserid("4");
+        int count = userDao.insertSelective(user);
+        return count;
     }
 }

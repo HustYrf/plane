@@ -164,6 +164,12 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+
+  <select id="selectByUserName" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select count(*) from user
+    where username=#{username,jdbcType=VARCHAR}
+  </select>
+
   <update id="updateByExampleSelective" parameterType="map" >
     update user
     <set >
