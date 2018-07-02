@@ -79,5 +79,8 @@ public class JsonView {
 	public String toString(){
 		return JSONObject.fromObject(this).toString();
 	}
-	
+
+	public static JsonView ok() {
+		return new JsonView(0);
+	}
 }
